@@ -79,7 +79,7 @@ class Spotify extends AbstractProvider
             $error = $data['error_description'] ?? $data['error'] ?? $response->getReasonPhrase();
             $statusCode = $response->getStatusCode();
 
-            if (\is_array($data['error'])) {
+            if (is_array($data) && is_array($data['error'])) {
                 $error = $data['error']['message'];
                 $statusCode = $data['error']['status'];
             }
