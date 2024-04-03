@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.21 - 2024-04-04
+
+### Fixed
+- Fix Apple provider token.
+- Fix an error with Spotify error handling.
+
 ## 1.0.20 - 2024-03-26
 
 ### Fixed
