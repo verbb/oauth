@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.22 - 2024-04-05
+
+### Added
+- Add improved session-storage and restoration between authorization and callback methods, to improve failed sessions in some cases.
+
 ## 1.0.21 - 2024-04-04
 
 ### Fixed
