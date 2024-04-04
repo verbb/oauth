@@ -2,6 +2,7 @@
 namespace verbb\auth\helpers;
 
 use Craft;
+use craft\helpers\ArrayHelper;
 use craft\helpers\StringHelper;
 
 class Session
@@ -22,6 +23,44 @@ class Session
     public static function remove(string $key): void
     {
         Craft::$app->getSession()->remove("verbb-auth.{$key}");
+    }
+
+    public static function storeSession(): void
+    {
+        // Find all the current session data, and store it with the right key (state) so we can
+        // fetch it when returning from callback and restore back to the session.
+        $sessionData = [];
+
+        foreach (Craft::$app->getSession() as $k => $value) {
+            if (str_starts_with($k, 'verbb-auth.')) {
+                $sessionData[$k] = $value;
+            }
+        }
+
+        // Store the state to the cache, as it's more reliable (persistant) than session data which will likely
+        // be wiped due to the redirect to a provider and back again.
+        $cacheKey = $sessionData['verbb-auth.state'] ?? null;
+        
+        if ($cacheKey) {
+            Craft::$app->getCache()->set('verbb-auth.' . $cacheKey, $sessionData);
+        }
+    }
+
+    public static function restoreSession(?string $stateKey): void
+    {
+        if (!$stateKey) {
+            return;
+        }
+
+        $cacheKey = 'verbb-auth.' . $stateKey;
+
+        if ($cachedData = Craft::$app->getCache()->get($cacheKey)) {
+            if (is_array($cachedData)) {
+                foreach ($cachedData as $key => $value) {
+                    Craft::$app->getSession()->set($key, $value);
+                }
+            }
+        }
     }
 
     public static function setFlash(string $namespace, string $key, mixed $value, bool $removeAfterAccess = true): void
