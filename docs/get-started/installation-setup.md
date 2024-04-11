@@ -16,7 +16,7 @@ composer require verbb/auth
 ```
 
 ## Setup
-To use the Auth module in your plugin, just call `Auth::getInstance()` or `Auth::$plugin`.
+To use the Auth module in your plugin, just call `Auth::getInstance()`.
 
 ```php
 public function init(): void

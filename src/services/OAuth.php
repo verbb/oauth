@@ -5,6 +5,7 @@ use verbb\auth\Auth;
 use verbb\auth\base\OAuthProviderInterface;
 use verbb\auth\events\AccessTokenEvent;
 use verbb\auth\events\AuthorizationUrlEvent;
+use verbb\auth\helpers\Session;
 use verbb\auth\models\Token;
 
 use Craft;
@@ -38,6 +39,9 @@ class OAuth extends Component
         ]);
 
         $this->trigger(self::EVENT_BEFORE_AUTHORIZATION_REDIRECT, $event);
+
+        // Store any state data to be applied back to session after returning from callback
+        Session::storeSession();
 
         // Check if this we need to authorize with an `authorization_code` grant
         if ($provider->getGrant() !== 'authorization_code') {
