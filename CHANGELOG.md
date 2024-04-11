@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0-beta.2 - 2024-03-04
+## 2.0.0-beta.2 - 2024-04-11
 
 ### Added
 - Add improved session-storage and restoration between authorization and callback methods, to improve failed sessions in some cases.
