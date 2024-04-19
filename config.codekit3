@@ -1179,6 +1179,14 @@
       "oAP" : "\/src\/clients\/hubspot\/provider\/HubSpotResourceOwner.php",
       "oF" : 0
     },
+    "\/src\/clients\/identityserver4\/provider\/IdentityServer4.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/clients\/identityserver4\/provider\/IdentityServer4-output.php",
+      "oF" : 0
+    },
     "\/src\/clients\/imgur\/provider\/Imgur.php" : {
       "cB" : 0,
       "ft" : 8192,
@@ -2811,6 +2819,14 @@
       "hM" : 0,
       "oA" : 2,
       "oAP" : "\/src\/providers\/HubSpot.php",
+      "oF" : 0
+    },
+    "\/src\/providers\/IdentityServer4.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/providers\/IdentityServer4-output.php",
       "oF" : 0
     },
     "\/src\/providers\/Imgur.php" : {
