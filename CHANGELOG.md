@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-beta.3 - 2024-05-09
+
+### Fixed
+- Fix an error with URL generation for authenticated requests.
+- Fix error handling for IdentityServer4 provider.
+
 ## 2.0.0-beta.2 - 2024-04-11
 
 ### Added
