@@ -91,7 +91,7 @@ trait ProviderTrait
             $baseUri = rtrim($baseUri, '/');
 
             // For cases where we want to pass in an absolute URL
-            $url = UrlHelper::isAbsoluteUrl($uri) ? $uri : $baseUri . '/' . ltrim($uri, '/');
+            $url = UrlHelper::isAbsoluteUrl($uri) || !$baseUri ? $uri : $baseUri . '/' . ltrim($uri, '/');
             $params = $this->getApiRequestQueryParams($token);
 
             if ($query = ArrayHelper::remove($options, 'query')) {
