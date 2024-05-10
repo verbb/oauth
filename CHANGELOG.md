@@ -1,28 +1,22 @@
 # Changelog
 
-## 2.0.0-beta.3 - 2024-05-09
-
-### Fixed
-- Fix an error with URL generation for authenticated requests.
-- Fix error handling for IdentityServer4 provider.
-
-## 2.0.0-beta.2 - 2024-04-11
+## 2.0.0 - 2024-05-11
 
 ### Added
 - Add improved session-storage and restoration between authorization and callback methods, to improve failed sessions in some cases.
 - Add IdentityServer4 provider.
+
+### Changed
+- Now requires PHP `8.2.0+`.
+- Now requires Craft `5.0.0+`.
 
 ### Fixed
 - Fix Apple provider token.
 - Fix an error with Spotify error handling.
 - Fix some Salesforce provider settings.
 - Fix namespace for IdentityServer4 provider.
-
-## 2.0.0-beta.1 - 2024-03-04
-
-### Changed
-- Now requires PHP `8.2.0+`.
-- Now requires Craft `5.0.0-beta.1+`.
+- Fix an error with URL generation for authenticated requests.
+- Fix error handling for IdentityServer4 provider.
 
 ## 1.0.22 - 2024-04-05
 
