@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1 - 2024-05-15
+
+### Fixed
+- Fix an error with Google provider
+
 ## 2.0.0 - 2024-05-11
 
 ### Added
