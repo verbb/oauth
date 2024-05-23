@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.2 - 2024-05-24
+
+### Fixed
+- Fix LinkedIn client to support v2 API.
+- Fix an error with URL generation for authenticated requests.
+- Fix error handling for IdentityServer4 provider.
+
 ## 2.0.1 - 2024-05-15
 
 ### Fixed
