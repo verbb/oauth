@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.24 - 2024-05-24
+
+### Fixed
+- Fix LinkedIn client to support v2 API.
+
 ## 1.0.23 - 2024-05-09
 
 ### Fixed
