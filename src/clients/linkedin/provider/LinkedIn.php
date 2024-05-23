@@ -32,8 +32,7 @@ class LinkedIn extends AbstractProvider
      * @see https://developer.linkedin.com/docs/fields/basic-profile
      */
     protected $fields = [
-        'id', 'firstName', 'lastName', 'localizedFirstName', 'localizedLastName',
-        'profilePicture(displayImage~:playableStreams)',
+        'sub', 'name', 'given_name', 'family_name', 'picture', 'locale', 'email', 'email_verified'
     ];
 
     protected $restProtocolVersion;
@@ -45,8 +44,7 @@ class LinkedIn extends AbstractProvider
      * @param array $options An array of options to set on this provider.
      *     Options include `clientId`, `clientSecret`, `redirectUri`, and `state`.
      *     Individual providers may introduce more options, as needed.
-     * @param array $collaborators An array of collaborators that may be used to
-     *     override this provider's default behavior. Collaborators include
+     * @param array $collaborators An array of collaborators that may be used to     *     override this provider's default behavior. Collaborators include
      *     `grantFactory`, `requestFactory`, and `httpClient`.
      *     Individual providers may introduce more collaborators, as needed.
      */
@@ -86,13 +84,20 @@ class LinkedIn extends AbstractProvider
      * The grant that was used to fetch the response can be used to provide
      * additional context.
      *
-     * @param  array $response
-     * @param  AbstractGrant $grant
+     * @param array $response
+     * @param AbstractGrant $grant
      * @return AccessTokenInterface
      */
     protected function createAccessToken(array $response, AbstractGrant $grant)
     {
         return new LinkedInAccessToken($response);
+    }
+
+    protected function getAuthorizationHeaders($token = null)
+    {
+        return [
+            'Authorization' => "Bearer {$token}",
+        ];
     }
 
     /**
@@ -128,34 +133,13 @@ class LinkedIn extends AbstractProvider
     /**
      * Get provider url to fetch user details
      *
-     * @param  AccessToken $token
+     * @param AccessToken $token
      *
      * @return string
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        $query = http_build_query([
-            'projection' => '(' . implode(',', $this->fields) . ')'
-        ]);
-
-        return 'https://api.linkedin.com/v2/me?' . urldecode($query);
-    }
-
-    /**
-     * Get provider url to fetch user details
-     *
-     * @param  AccessToken $token
-     *
-     * @return string
-     */
-    public function getResourceOwnerEmailUrl(AccessToken $token)
-    {
-        $query = http_build_query([
-            'q' => 'members',
-            'projection' => '(elements*(state,primary,type,handle~))'
-        ]);
-
-        return 'https://api.linkedin.com/v2/clientAwareMemberHandles?' . urldecode($query);
+        return 'https://api.linkedin.com/v2/userinfo';
     }
 
     /**
@@ -174,8 +158,8 @@ class LinkedIn extends AbstractProvider
     /**
      * Check a provider response for errors.
      *
-     * @param  ResponseInterface $response
-     * @param  array $data Parsed response data
+     * @param ResponseInterface $response
+     * @param array $data Parsed response data
      * @return void
      * @throws IdentityProviderException
      * @see https://developer.linkedin.com/docs/guide/v2/error-handling
@@ -196,8 +180,8 @@ class LinkedIn extends AbstractProvider
     /**
      * Check a provider response for unauthorized errors.
      *
-     * @param  ResponseInterface $response
-     * @param  array $data Parsed response data
+     * @param ResponseInterface $response
+     * @param array $data Parsed response data
      * @return void
      * @throws LinkedInAccessDeniedException
      * @see https://developer.linkedin.com/docs/guide/v2/error-handling
@@ -222,16 +206,6 @@ class LinkedIn extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-        // If current accessToken is not authorized with r_emailaddress scope,
-        // getResourceOwnerEmail will throw LinkedInAccessDeniedException, it will be caught here,
-        // and then the email will be set to null
-        // When email is not available due to chosen scopes, other providers simply set it to null, let's do the same.
-        try {
-            $email = $this->getResourceOwnerEmail($token);
-        } catch (LinkedInAccessDeniedException $exception) {
-            $email = null;
-        }
-        $response['email'] = $email;
         return new LinkedInResourceOwner($response);
     }
 
@@ -246,25 +220,9 @@ class LinkedIn extends AbstractProvider
     }
 
     /**
-     * Attempts to fetch resource owner's email address via separate API request.
-     *
-     * @param  AccessToken $token [description]
-     * @return string|null
-     * @throws IdentityProviderException
-     */
-    public function getResourceOwnerEmail(AccessToken $token)
-    {
-        $emailUrl = $this->getResourceOwnerEmailUrl($token);
-        $emailRequest = $this->getAuthenticatedRequest(self::METHOD_GET, $emailUrl, $token);
-        $emailResponse = $this->getParsedResponse($emailRequest);
-
-        return $this->extractEmailFromResponse($emailResponse);
-    }
-
-    /**
      * Updates the requested fields in scope.
      *
-     * @param  array   $fields
+     * @param array $fields
      *
      * @return LinkedIn
      */
@@ -273,29 +231,5 @@ class LinkedIn extends AbstractProvider
         $this->fields = $fields;
 
         return $this;
-    }
-
-    /**
-     * Attempts to extract the email address from a valid email api response.
-     *
-     * @param  array  $response
-     * @return string|null
-     */
-    protected function extractEmailFromResponse($response = [])
-    {
-        try {
-            $confirmedEmails = array_filter($response['elements'], function ($element) {
-                return
-                    strtoupper($element['type']) === 'EMAIL'
-                    && strtoupper($element['state']) === 'CONFIRMED'
-                    && $element['primary'] === true
-                    && isset($element['handle~']['emailAddress'])
-                ;
-            });
-
-            return $confirmedEmails[0]['handle~']['emailAddress'];
-        } catch (Exception $e) {
-            return null;
-        }
     }
 }
