@@ -1,4 +1,5 @@
-<?php namespace verbb\auth\clients\linkedin\provider;
+<?php
+namespace verbb\auth\clients\linkedin\provider;
 
 use League\OAuth2\Client\Provider\GenericResourceOwner;
 use League\OAuth2\Client\Tool\ArrayAccessorTrait;
@@ -68,7 +69,7 @@ class LinkedInResourceOwner extends GenericResourceOwner
      */
     public function getId(): ?string
     {
-        return $this->getAttribute('id');
+        return $this->getAttribute('sub') ?? $this->getAttribute('id');
     }
 
     /**
@@ -195,4 +196,5 @@ class LinkedInResourceOwner extends GenericResourceOwner
         $this->sortedProfilePictures = $pictures;
     }
 
+    }
 }

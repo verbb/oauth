@@ -23,6 +23,17 @@
 - Fix an error with URL generation for authenticated requests.
 - Fix error handling for IdentityServer4 provider.
 
+## 1.0.24 - 2024-05-24
+
+### Fixed
+- Fix LinkedIn client to support v2 API.
+
+## 1.0.23 - 2024-05-09
+
+### Fixed
+- Fix an error with URL generation for authenticated requests.
+- Fix error handling for IdentityServer4 provider.
+
 ## 1.0.22 - 2024-04-05
 
 ### Added
