@@ -195,6 +195,4 @@ class LinkedInResourceOwner extends GenericResourceOwner
 
         $this->sortedProfilePictures = $pictures;
     }
-
-    }
 }
