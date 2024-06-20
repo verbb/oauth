@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.25 - 2024-06-21
+
+### Fixed
+- Fix Slack provider not setting correct auth token for requests.
+
 ## 1.0.24 - 2024-05-24
 
 ### Fixed
