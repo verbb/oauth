@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.5 - 2024-06-21
+
+### Fixed
+- Fix an error with Azure/Entra with login approval.
+
 ## 2.0.4 - 2024-06-21
 
 ### Fixed
