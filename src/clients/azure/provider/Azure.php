@@ -520,6 +520,15 @@ class Azure extends AbstractProvider
         return new AzureResourceOwner($response);
     }
 
+    protected function getAuthorizationParameters(array $options)
+    {
+        $options = parent::getAuthorizationParameters($options);
+        $options['prompt'] = 'select_account';
+        unset($options['approval_prompt']);
+        
+        return $options;
+    }
+
     private function wrapResponse($response)
     {
         if (empty($response)) {
