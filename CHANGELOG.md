@@ -40,6 +40,16 @@
 - Fix an error with URL generation for authenticated requests.
 - Fix error handling for IdentityServer4 provider.
 
+## 1.0.26 - 2024-06-21
+
+### Fixed
+- Fix an error with Azure/Entra with login approval.
+
+## 1.0.25 - 2024-06-21
+
+### Fixed
+- Fix Slack provider not setting correct auth token for requests.
+
 ## 1.0.24 - 2024-05-24
 
 ### Fixed
