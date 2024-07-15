@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.6 - 2024-07-15
+
+### Added
+- Add Amazon Cognito provider.
+
 ## 2.0.5 - 2024-06-21
 
 ### Fixed
