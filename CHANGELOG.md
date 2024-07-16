@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.7 - 2024-07-17
+
+### Fixed
+- Fix an error for IdentityServer4 `getBaseApiUrl()`.
+- Fix an error for Fedex `getBaseApiUrl()`.
+- Fix errors for Amazon Cognito Provider. (thanks @lucbernard).
+
 ## 2.0.6 - 2024-07-15
 
 ### Added
