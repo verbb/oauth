@@ -210,11 +210,11 @@ class AmazonCognito extends AbstractProvider
     /**
      * @param array $response
      * @param AccessToken $token
-     * @return CognitoUser|\League\OAuth2\Client\Provider\ResourceOwnerInterface
+     * @return AmazonCognitoUser|\League\OAuth2\Client\Provider\ResourceOwnerInterface
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-        $user = new CognitoUser($response);
+        $user = new AmazonCognitoUser($response);
 
         return $user;
     }
