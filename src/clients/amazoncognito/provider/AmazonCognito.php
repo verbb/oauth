@@ -12,7 +12,6 @@ class AmazonCognito extends AbstractProvider
 {
     use BearerAuthorizationTrait;
 
-    const BASE_COGNITO_URL = 'https://%s.auth.%s.amazoncognito.com%s';
     /**
      * @var array List of scopes that will be used for authentication.
      *
@@ -23,20 +22,10 @@ class AmazonCognito extends AbstractProvider
     protected $scopes = [];
 
     /**
-     * @var string If set, it will replace default AWS Cognito urls.
+     * @var string The full domain to AWS Cognito.
      */
-    protected $hostedDomain;
+    protected $domain;
     
-    /**
-     * @var string If set, it will be added to AWS Cognito urls.
-     */
-    protected $cognitoDomain;
-
-    /**
-     * @var string If set, it will be added to AWS Cognito urls.
-     */
-    protected $region;
-
     /**
      * @param array $options
      * @param array $collaborators
@@ -47,19 +36,20 @@ class AmazonCognito extends AbstractProvider
     {
         parent::__construct($options, $collaborators);
         
-        if (!empty($options['hostedDomain'])) {
-            $this->hostedDomain = $options['hostedDomain'];
-        } elseif (!empty($options['cognitoDomain']) && !empty($options['region'])) {
-            $this->cognitoDomain = $options['cognitoDomain'];
-            $this->region = $options['region'];
+        if (!empty($options['domain'])) {
+            $this->domain = $options['domain'];
         } else {
             throw new \InvalidArgumentException(
-                'Neither "cognitoDomain" and "region" nor "hostedDomain" options are set. Please set one of them.'
+                'The "domain" option must be set.'
             );
         }
 
         if (!empty($options['scope'])) {
-            $this->scopes = explode($this->getScopeSeparator(), $options['scope']);
+            if (is_array($options['scope'])) {
+                $this->scopes = $options['scope'];
+            } else {
+                $this->scopes = explode($this->getScopeSeparator(), $options['scope']);
+            }
         }
     }
 
@@ -72,51 +62,19 @@ class AmazonCognito extends AbstractProvider
     }
 
     /**
-     * @return mixed
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * @param $region
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-    }
-
-    /**
      * @return string
      */
-    public function getHostedDomain()
+    public function getDomain()
     {
-        return $this->hostedDomain;
+        return $this->domain;
     }
 
     /**
-     * @param string $hostedDomain
+     * @param string $domain
      */
-    public function setHostedDomain($hostedDomain)
+    public function setDomain($domain)
     {
-        $this->hostedDomain = $hostedDomain;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCognitoDomain()
-    {
-        return $this->cognitoDomain;
-    }
-
-    /**
-     * @param string $cognitoDomain
-     */
-    public function setCognitoDomain($cognitoDomain)
-    {
-        $this->cognitoDomain = $cognitoDomain;
+        $this->domain = $domain;
     }
 
     /**
@@ -127,8 +85,7 @@ class AmazonCognito extends AbstractProvider
      */
     private function getCognitoUrl($action)
     {
-        return !empty($this->hostedDomain) ? $this->hostedDomain . $action :
-            sprintf(self::BASE_COGNITO_URL, $this->cognitoDomain, $this->region, $action);
+        return rtrim($this->domain, '/') . '/' . ltrim($action, '/');
     }
 
     /**
@@ -136,7 +93,7 @@ class AmazonCognito extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->getCognitoUrl('/authorize');
+        return $this->getCognitoUrl('oauth2/authorize');
     }
 
     /**
@@ -145,7 +102,7 @@ class AmazonCognito extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->getCognitoUrl('/token');
+        return $this->getCognitoUrl('oauth2/token');
     }
 
     /**
@@ -154,7 +111,7 @@ class AmazonCognito extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->getCognitoUrl('/oauth2/userInfo');
+        return $this->getCognitoUrl('oauth2/userInfo');
     }
 
     /**
@@ -179,7 +136,7 @@ class AmazonCognito extends AbstractProvider
      */
     protected function getDefaultScopes()
     {
-        return ['openid', 'email'];
+        return ['openid', 'email', 'profile'];
     }
 
     /**
