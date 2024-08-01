@@ -9,6 +9,7 @@ use craft\helpers\ArrayHelper;
 use craft\helpers\Json;
 use craft\helpers\UrlHelper;
 
+use Closure;
 use Throwable;
 
 use League\OAuth2\Client\Token\AccessTokenInterface;
@@ -20,6 +21,12 @@ trait ProviderTrait
     // =========================================================================
     
     abstract public function getBaseApiUrl(?Token $token): ?string;
+
+
+    // Properties
+    // =========================================================================
+
+    public Closure|string|null $baseApiUrl = null;
 
 
     // Public Methods
@@ -34,6 +41,23 @@ trait ProviderTrait
     {
         // Open up the default protected `getDefaultScopes()` function
         return $this->getDefaultScopes();
+    }
+
+    public function getResolvedBaseApiUrl(?Token $token): ?string
+    {
+        // We should use this function to allow either overriding the baseApiUrl via config
+        // or when the includer of this trait provides a `getBaseApiUrl()` function.
+        if ($this->baseApiUrl) {
+            if (is_string($this->baseApiUrl)) {
+                return $this->baseApiUrl;
+            }
+
+            if (is_callable($this->baseApiUrl)) {
+                return ($this->baseApiUrl)($token);
+            }
+        }
+
+        return $this->getBaseApiUrl($token);
     }
 
     public function getApiRequestQueryParams(?Token $token): array
@@ -87,7 +111,7 @@ trait ProviderTrait
     {
         try {
             // Normalise the URL and query params
-            $baseUri = ArrayHelper::remove($options, 'base_uri', $this->getBaseApiUrl($token));
+            $baseUri = ArrayHelper::remove($options, 'base_uri', $this->getResolvedBaseApiUrl($token));
             $baseUri = rtrim($baseUri, '/');
 
             // For cases where we want to pass in an absolute URL
