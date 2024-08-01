@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.9 - 2024-08-02
+
+### Added
+- Add the ability to set `baseApiUrl` for providers as part of their config. This can be a string, or a callback function.
+
+### Fixed
+- Fix Zoho base API URL not taking into account `useDeveloper` setting.
+
 ## 2.0.8 - 2024-07-17
 
 ### Changed

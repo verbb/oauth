@@ -259,6 +259,22 @@
       "oAP" : "\/src\/clients\/amazon\/provider\/AmazonResourceOwner.php",
       "oF" : 0
     },
+    "\/src\/clients\/amazoncognito\/provider\/AmazonCognito.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/clients\/amazoncognito\/provider\/AmazonCognito-output.php",
+      "oF" : 0
+    },
+    "\/src\/clients\/amazoncognito\/provider\/AmazonCognitoUser.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/clients\/amazoncognito\/provider\/AmazonCognitoUser-output.php",
+      "oF" : 0
+    },
     "\/src\/clients\/apple\/provider\/Apple.php" : {
       "cB" : 0,
       "ft" : 8192,
@@ -2515,6 +2531,14 @@
       "hM" : 0,
       "oA" : 2,
       "oAP" : "\/src\/providers\/Amazon.php",
+      "oF" : 0
+    },
+    "\/src\/providers\/AmazonCognito.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/providers\/AmazonCognito-output.php",
       "oF" : 0
     },
     "\/src\/providers\/Apple.php" : {
