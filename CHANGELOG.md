@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.11 - 2024-08-09
+
+### Fixed
+- Fix an issue with the Generic provider.
+
 ## 2.0.10 - 2024-08-09
 
 ### Fixed
