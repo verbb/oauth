@@ -75,6 +75,16 @@
 - Fix an error with URL generation for authenticated requests.
 - Fix error handling for IdentityServer4 provider.
 
+## 1.0.29 - 2024-08-09
+
+### Fixed
+- Fix an issue with the Generic provider and duplicate `baseApiUrl`.
+
+## 1.0.28 - 2024-07-17
+
+### Changed
+- Updated Amazon Cognito provider.
+
 ## 1.0.27 - 2024-07-12
 
 ### Added
