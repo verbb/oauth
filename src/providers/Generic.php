@@ -17,6 +17,11 @@ class Generic extends GenericProvider
     // Public Methods
     // =========================================================================
 
+    public function getBaseApiUrl(): ?string
+    {
+        return $this->baseApiUrl;
+    }
+
     public function getApiRequestQueryParams(Token $token): array
     {
         return [
