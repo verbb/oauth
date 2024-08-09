@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.29 - 2024-08-09
+
+### Fixed
+- Fix an issue with the Generic provider and duplicate `baseApiUrl`.
+
 ## 1.0.28 - 2024-07-17
 
 ### Changed
