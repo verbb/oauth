@@ -80,6 +80,11 @@
 - Fix an error with URL generation for authenticated requests.
 - Fix error handling for IdentityServer4 provider.
 
+## 1.0.30 - 2024-08-09
+
+### Fixed
+- Fix an issue with the Generic provider.
+
 ## 1.0.29 - 2024-08-09
 
 ### Fixed
