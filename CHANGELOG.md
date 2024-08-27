@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.12 - 2024-08-27
+
+### Fixed
+- Add conditional for Twitter `code_verifier` check to prevent errors when already supplied.
+- Fix an error with token values not being typed correctly.
+
 ## 2.0.11 - 2024-08-09
 
 ### Fixed
