@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.31 - 2024-08-27
+
+### Fixed
+- Add conditional for Twitter `code_verifier` check to prevent errors when already supplied.
+
 ## 1.0.30 - 2024-08-09
 
 ### Fixed
