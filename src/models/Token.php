@@ -32,7 +32,7 @@ class Token extends Model
     public ?string $expires = null;
     public ?string $refreshToken = null;
     public ?string $resourceOwnerId = null;
-    public ?array $values = null;
+    public array $values = [];
     public ?DateTime $dateCreated = null;
     public ?DateTime $dateUpdated = null;
     public ?string $uid = null;
