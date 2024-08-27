@@ -42,7 +42,9 @@ class Twitter extends TwitterProvider
     protected function getAccessTokenRequest(array $params): RequestInterface
     {
         // Apply PKCE token
-        $params['code_verifier'] = Session::get('oauth2verifier');
+        if (!isset($params['code_verifier'])) {
+            $params['code_verifier'] = Session::get('oauth2verifier');
+        }
 
         return parent::getAccessTokenRequest($params);
     }
