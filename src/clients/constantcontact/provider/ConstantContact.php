@@ -48,6 +48,16 @@ class ConstantContact extends AbstractProvider
         return [];
     }
 
+    protected function getScopeSeparator(): string
+    {
+        return ' ';
+    }
+
+    protected function getAuthorizationHeaders($token = null): array
+    {
+        return ['Authorization' => 'Bearer ' . $token->getToken()];
+    }
+
     public function checkResponse(ResponseInterface $response, $data)
     {
         if (!empty($data['errors'])) {
