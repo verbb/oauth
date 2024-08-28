@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.32 - 2024-08-29
+
+### Fixed
+- Fix Constant Contact client not working.
+
 ## 1.0.31 - 2024-08-27
 
 ### Fixed
