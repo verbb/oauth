@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.33 - 2024-09-13
+
+### Added
+- Add Microsoft Entra provider.
+
 ## 1.0.32 - 2024-08-29
 
 ### Fixed
