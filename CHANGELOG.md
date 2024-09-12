@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.34 - 2024-09-13
+
+### Fixed
+- Fix an error with Microsoft Entra provider.
+
 ## 1.0.33 - 2024-09-13
 
 ### Added
