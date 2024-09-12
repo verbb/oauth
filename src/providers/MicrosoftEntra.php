@@ -16,12 +16,12 @@ class MicrosoftEntra extends MicrosoftEntraProvider
     // Public Methods
     // =========================================================================
 
-    public function getBaseApiUrl(?Token $token): ?string
+    public function getBaseApiUrl(): ?string
     {
         return 'https://graph.microsoft.com/v1.0/';
     }
 
-    public function getApiRequestQueryParams(?Token $token): array
+    public function getApiRequestQueryParams(Token $token): array
     {
         return [
             'access_token' => (string)$token->getToken(),
