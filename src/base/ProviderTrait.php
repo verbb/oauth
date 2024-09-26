@@ -109,6 +109,10 @@ trait ProviderTrait
 
     public function getApiRequest(string $method = 'GET', string $uri = '', ?Token $token, array $options = [], bool $forceRefresh = true): mixed
     {
+        // Retain original variables for the retry request, as it can be modified
+        $originalToken = $token;
+        $originalOptions = $options;
+
         try {
             // Normalise the URL and query params
             $baseUri = ArrayHelper::remove($options, 'base_uri', $this->getResolvedBaseApiUrl($token));
@@ -173,7 +177,7 @@ trait ProviderTrait
                 $this->refreshToken($token, true);
 
                 // Then try again, with the new access token
-                return $this->getApiRequest($method, $uri, $token, $options, false);
+                return $this->getApiRequest($method, $uri, $token, $originalOptions, false);
             }
 
             // Otherwise, throw the error as normal to allow plugins upstream to handle it
