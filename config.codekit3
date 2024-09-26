@@ -1459,6 +1459,22 @@
       "oAP" : "\/src\/clients\/microsoft\/provider\/MicrosoftResourceOwner.php",
       "oF" : 0
     },
+    "\/src\/clients\/microsoftentra\/provider\/MicrosoftEntra.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/clients\/microsoftentra\/provider\/MicrosoftEntra-output.php",
+      "oF" : 0
+    },
+    "\/src\/clients\/microsoftentra\/provider\/MicrosoftEntraResourceOwner.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/clients\/microsoftentra\/provider\/MicrosoftEntraResourceOwner-output.php",
+      "oF" : 0
+    },
     "\/src\/clients\/mixer\/entity\/MixerUser.php" : {
       "cB" : 0,
       "ft" : 8192,
@@ -2947,6 +2963,14 @@
       "hM" : 0,
       "oA" : 2,
       "oAP" : "\/src\/providers\/Microsoft.php",
+      "oF" : 0
+    },
+    "\/src\/providers\/MicrosoftEntra.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/src\/providers\/MicrosoftEntra-output.php",
       "oF" : 0
     },
     "\/src\/providers\/Mixer.php" : {

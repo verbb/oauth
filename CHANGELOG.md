@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.15 - 2024-09-26
+
+### Fixed
+- Fix an error when making a request with a query string, and refreshing an expired token in the same request.
+
 ## 2.0.14 - 2024-09-12
 
 ### Added
