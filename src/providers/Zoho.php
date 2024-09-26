@@ -22,7 +22,11 @@ class Zoho extends ZohoProvider
             return 'https://developer.zohoapis.com';
         }
 
-        // Use the API domain from the token, or fallback to defualts
-        return $token->getToken()->getValues()['api_domain'] ?? $this->getApiUrl();
+        if ($token) {
+            // Use the API domain from the token, or fallback to defualts
+            return $token->getToken()?->getValues()['api_domain'] ?? $this->getApiUrl();
+        }
+
+        return $this->getApiUrl();
     }
 }

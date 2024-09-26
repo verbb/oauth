@@ -24,7 +24,7 @@ class Snapchat extends SnapchatProvider
     public function getApiRequestQueryParams(?Token $token): array
     {
         return [
-            'access_token' => (string)$token->getToken(),
+            'access_token' => $token?->getToken() ?? '',
         ];
     }
 }
