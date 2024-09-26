@@ -170,7 +170,11 @@ trait OAuthProviderTrait
             $error = $request->getParam('error_code');
 
             if ($error) {
-                Auth::error('An error occurred: {error}.', Json::encode($error));
+                if (is_array($error)) {
+                    $error = Json::encode($error);
+                }
+
+                Auth::error('An error occurred: {error}.', $error);
 
                 throw new Exception('An error occurred.');
             }
