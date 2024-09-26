@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.16 - 2024-09-26
+
+### Fixed
+- Update handling for `getBaseApiUrl()` when a token doesn’t yet exist.
+- Fix an error when logging error codes.
+
 ## 2.0.15 - 2024-09-26
 
 ### Fixed
