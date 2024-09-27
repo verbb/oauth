@@ -24,7 +24,7 @@ class Deezer extends DeezerProvider
     public function getApiRequestQueryParams(?Token $token): array
     {
         return [
-            'access_token' => $token?->getToken() ?? '',
+            'access_token' => (string)($token?->getToken() ?? ''),
         ];
     }
 }
