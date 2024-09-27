@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.17 - 2024-09-27
+
+### Fixed
+- Update handling for `getBaseApiUrl()` when a token doesn’t yet exist.
+
 ## 2.0.16 - 2024-09-26
 
 ### Fixed
