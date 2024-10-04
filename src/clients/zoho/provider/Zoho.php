@@ -26,6 +26,7 @@ class Zoho extends AbstractProvider
         'IN' => 'https://accounts.zoho.in',
         'CN' => 'https://accounts.zoho.com.cn',
         'JP' => 'https://accounts.zoho.jp',
+        'CA' => 'https://accounts.zohocloud.ca',
     ];
 
     /**
