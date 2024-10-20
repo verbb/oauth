@@ -112,6 +112,12 @@
 - Fix an error with URL generation for authenticated requests.
 - Fix error handling for IdentityServer4 provider.
 
+## 1.0.35 - 2024-10-20
+
+### Added
+- Add Xero provider.
+- Add CA domain to Zoho provider.
+
 ## 1.0.34 - 2024-09-13
 
 ### Fixed
