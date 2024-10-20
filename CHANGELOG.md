@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.18 - 2024-10-20
+
+### Added
+- Add Xero provider.
+- Add CA domain to Zoho provider.
+
 ## 2.0.17 - 2024-09-27
 
 ### Fixed
