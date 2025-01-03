@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.19 - 2025-01-03
+
+### Changed
+- Lock `league/oauth2-client` to `2.7.0` to prevent an issue with refresh token scopes on some providers.
+
 ## 2.0.18 - 2024-10-20
 
 ### Added
