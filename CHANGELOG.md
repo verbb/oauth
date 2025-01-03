@@ -118,6 +118,11 @@
 - Fix an error with URL generation for authenticated requests.
 - Fix error handling for IdentityServer4 provider.
 
+## 1.0.36 - 2025-01-03
+
+### Changed
+- Lock `league/oauth2-client` to `2.7.0` to prevent an issue with refresh token scopes on some providers.
+
 ## 1.0.35 - 2024-10-20
 
 ### Added
